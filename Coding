@@ -2,6 +2,8 @@
 //
 int distance = 0;
 
+int SensorValue = 0;
+
 long readUltrasonicDistance(int triggerPin, int echoPin)
 {
   pinMode(triggerPin, OUTPUT);  // Clear the trigger
@@ -20,17 +22,17 @@ void setup()
 {
   Serial.begin(9600);
 
-  pinMode(12, OUTPUT);
+  pinMode(7, OUTPUT);
 }
 
 void loop()
 {
-  distance = 0.01723 * readUltrasonicDistance(A0, A0);
-  Serial.println(distance);
-  if (distance < 100) {
-    digitalWrite(12, HIGH);
+  SensorValue = 0.01723 * readUltrasonicDistance(3, 2);
+  Serial.println(SensorValue);
+  if (SensorValue >= 70) {
+    digitalWrite(7, HIGH);
   } else {
-    digitalWrite(12, LOW);
+    digitalWrite(7, LOW);
   }
   delay(10); // Delay a little bit to improve simulation performance
 }
